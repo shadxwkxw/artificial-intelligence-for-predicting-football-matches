@@ -1,0 +1,333 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 234, 1);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    position: relative; 
+}
+
+.ellipse-1 {
+    position: absolute; 
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    height: 700px;
+}
+
+.ellipse-2 {
+    position: absolute;
+    right: 0;
+    top: 45%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.about {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.class-with-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+.logo {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+.text-in-about {
+    text-align: center;
+    width: 80%; 
+    margin: 0 auto; 
+    word-break: break-word;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.horizontal-line-black {
+    border-bottom: 1px solid black;
+    margin-top: 20px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.horizontal-line-white {
+    border-bottom: 1px solid white;
+    width: 100%;
+    margin: 0;
+}
+
+.choise-commands {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.choise-commands h1 {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 40px;
+}
+
+.predicted {
+    margin-top: 50px;
+}
+
+.form-prediction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.result {
+    display: flex;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    padding: 40px;
+}
+
+.input-1, .input-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 28px;
+}
+
+.label-1, .label-2 {
+    padding-bottom: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input {
+    padding: 12px 15px;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+    border: 3px solid #333; 
+    background-color: #f8f8f8; 
+    width: 220px;
+    transition: 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    background-color: #eee; 
+    border-color: #ffb300; 
+    box-shadow: 0 0 5px #ffb300; 
+    transition: 0.3s ease;
+}
+
+.select-commands {
+    display: flex;
+    justify-content: center;
+}
+
+.select-item {
+    margin: 40px;
+    font-size: 28px;
+    padding: 10px 15px; 
+    border: 1px solid black;
+    border-radius: 5px;  
+    background-color: #ffffff;
+    appearance: none;
+}
+
+.premier-league-logo {
+    padding: 30px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.button-predict {
+    border-radius: 10px;
+    width: 150px;
+    font-size: 18px;
+    padding: 5px;
+    background-color: #f8f8f8; 
+    border: 2px solid #333; 
+}
+
+.class-footer {
+    background-color: black; 
+    color: white; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 50px; 
+}
+
+.danil, .maksim {
+    display: flex; 
+    align-items: center; 
+    background-color: black;
+    min-height: 100%;
+}
+
+.danil img, .maksim img, .ton img {
+    max-width: 200px; 
+    margin-right: 15px;
+    border-radius: 30px;
+}
+
+.maksim img {
+    margin-left: 15px;
+}
+
+.about-developer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+    background-color: black;
+    padding: 20px;
+}
+
+.about-us {
+    margin: 0;
+    background-color: black;
+}
+
+.donat {
+    background-color: black;
+    color: white;
+    height: 200px;
+    padding: 0;
+    display: flex;
+    padding: 40px;
+    flex-direction: column;
+    height: auto;
+}
+
+.donat h1 {
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.donat p {
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 28px;
+    padding: 10px;
+    padding-left: 0;
+}
+
+@media (max-width: 767px) {
+    .commands {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .select-for-commands {
+        font-size: 15px;
+        padding: 5px 5px;
+        margin-top: 15px;
+    }
+
+    .premier-league-logo {
+        width: 40%;
+        padding: 0 20px;
+        padding-bottom: 20px;
+    }
+
+    .first-command {
+        padding-top: 20px   ;
+    }
+}
+
+@media (max-width: 767px) {
+    .ellipse-1, .ellipse-2 {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .choise-commands h1 {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .class-footer {
+        flex-direction: column; 
+        padding: 20px; 
+        align-items: center; 
+    }
+
+    .danil {
+        flex-direction: column; 
+        align-items: center;
+        margin: 20px 0;
+    }
+
+    .maksim {
+        flex-direction: column-reverse; 
+        align-items: center; 
+        margin-bottom: 20px; 
+    }
+
+    .danil img, .maksim img {
+        max-width: 60%; 
+        margin-right: 0; 
+        margin-bottom: 10px;
+    }
+
+    .about-developer {
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    .maksim img {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    input {
+        padding: 5px;
+    }
+    
+    .form-prediction {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-1, .input-2 {
+        font-size: 20px;
+        padding-top: 10px;
+    }
+
+    .result {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .donat p {
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Нейросеть</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/static/style.css'>
+</head>
+<body>
+    <!-- <img class="ellipse-1" src="/static/images/Ellipse 1.png">
+    <img class="ellipse-2" src="/static/images/Ellipse 2.png"> -->
+
+    <div class="about">
+        <div class="class-with-logo">
+            <img src="/static/images/logo.png" class="logo">
+            <p class="text-in-about">ТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектсТектс</p>
+        </div>       
+    </div>
+
+    <div class="horizontal-line-black"></div>
+
+    <div class="choise-commands">
+        <h1>Выбрать две команды для предсказания исхода:</h1>
+        <div class="select-commands">
+            <select class="select-item">
+                <option>Список команд</option>
+            </select>
+        </div>
+        <form id="predictionForm" method="POST" action="/predict" class="form-prediction">
+            <div class="input-1">
+                <label for="team1Id" class="label-1">ID первой команды:</label>
+                <input id="team1Id" name="team1Id" required><br><br>
+            </div>
+
+            <img src="/static/images/premier league.png" class="premier-league-logo">
+
+            <div class="input-2">
+                <label for="team2Id" class="label-2">ID второй команды:</label>
+                <input id="team2Id" name="team2Id" required><br><br>
+            </div>
+          </form>
+
+          <div class="button-container">
+                <button onclick="predictMatch()" class="button-predict">Предсказание</button>
+          </div>
+
+          <div id="result" class="result"></div>
+    </div>
+
+    <div class="horizontal-line-black"></div>
+
+    <div class="class-footer">
+        <div class="danil">
+            <img class="taobaogoat" src="/static/images/taobaogoat.jpg">
+            <div class="about-developer">
+                <p class="about-us">Разработчик:</p>
+                <p class="about-us">Власюк Данил</p>
+            </div>
+        </div>
+
+        <div class="maksim">
+            <div class="about-developer">
+                <p class="about-us">Разработчик:</p>
+                <p class="about-us">Беспалый Максим</p>
+            </div>
+            <img class="kxwarvta" src="/static/images/kxwarvt.jpg">
+        </div>
+    </div>
+
+    <div class="horizontal-line-white"></div>
+    
+    <div class="donat">
+        <h1>Донат: </h1>
+        <p>UQD4x00bCp56I0AH4ZE-Cm88Iea0m8oqvc3A2HPrAGLj9iWf (TON)</p>
+        <p>TQHfJ3Kc7rZ1txgU3rTj1E3U67pK8XD92T (USDT TRC-20)</p>
+    </div>
+    <script>
+        async function predictMatch() {
+            const team1Id = document.getElementById('team1Id').value;
+            const team2Id = document.getElementById('team2Id').value;
+            const resultDiv = document.getElementById('result');
+        
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ team1Id, team2Id })
+                });
+        
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    resultDiv.textContent = `Error: ${errorData.error}`;
+                    return;
+                }
+        
+                const data = await response.json();
+                resultDiv.textContent = `${data.prediction}`;
+            } catch (error) {
+                resultDiv.textContent = `Error: ${error}`;
+            }
+        }
+    </script>
+    <script>
+        const selectElement = document.querySelector('.select-commands select');
+        
+        const teamData = [
+            {id: 1, name: "1 – Arsenal"},
+            {id: 2, name: "2 – Aston Villa"},
+            {id: 3, name: "3 – Bournemouth"},
+            {id: 4, name: "4 – Brentford"},
+            {id: 5, name: "5 – Brighton"},
+            {id: 6, name: "6 – Burnley"},
+            {id: 7, name: "7 – Chelsea"},
+            {id: 8, name: "8 – Crystal Palace"},
+            {id: 9, name: "9 – Everton"},
+            {id: 10, name: "10 – Fulham"},
+            {id: 11, name: "11 – Ipswich"},
+            {id: 12, name: "12 – Leeds"},
+            {id: 13, name: "13 – Leicester"},
+            {id: 14, name: "14 – Liverpool"},
+            {id: 15, name: "15 – Luton"},
+            {id: 16, name: "16 – Man City"},
+            {id: 17, name: "17 – Man United"},
+            {id: 18, name: "18 – Newcastle"},
+            {id: 19, name: "19 – Norwich"},
+            {id: 20, name: "20 – Nott'm Forest"},
+            {id: 21, name: "21 – Sheffield United"},
+            {id: 22, name: "22 – Southampton"},
+            {id: 23, name: "23 – Tottenham"},
+            {id: 24, name: "24 – Watford"},
+            {id: 25, name: "25 – West Brom"},
+            {id: 26, name: "26 – West Ham"},
+            {id: 27, name: "27 – Wolves"}
+        ];
+    
+        teamData.forEach(team => {
+            const option = document.createElement('option');
+        option.value = team.id;
+        option.text = team.name;
+        selectElement.add(option);
+        });
+
+    </script>
+</body>
+</html>
