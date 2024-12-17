@@ -1,5 +1,5 @@
 import numpy as np
-import csv
+import pandas as pd
 from flask import Flask, request, jsonify, render_template
 from tensorflow import keras
 
@@ -27,21 +27,22 @@ def home():
 @app.route('/teams', methods=['GET'])
 def get_teams():
     try:
-        teams = set()
-        with open('главный датасет.csv', 'r', encoding='utf-8') as csvfile: # Specify encoding if needed
-            reader = csv.DictReader(csvfile) # Assumes a header row in your CSV
-            for row in reader:
-                teams.add(row['HomeTeam'])
+        data = pd.read_csv('главный датасет.csv')
+        df = pd.DataFrame(data)
 
-        teams_list = [{'team': team, 'id': i + 1} for i, team in enumerate(sorted(list(teams)))]
+        # Присваиваем уникальный номер каждой команде
+        df['HomeTeam'] = df['HomeTeam'].astype('category')
+
+        teams_df = pd.DataFrame({
+            'team': df['HomeTeam'].cat.categories,
+            'id': range(1, len(df['HomeTeam'].cat.categories) + 1)
+        })
+
+        # Конвертируем в список словарей для JSON-ответа
+        teams_list = teams_df.to_dict(orient='records')
         return jsonify({'teams': teams_list})
-
-    except FileNotFoundError:
-        return jsonify({'error': 'CSV file not found'}), 500
-    except KeyError as e:
-        return jsonify({'error': f'Missing column in CSV: {e}'}), 500  # Handle missing 'HomeTeam' column
     except Exception as e:
-        return jsonify({'error': f'An error occurred: {e}'}), 500
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/predict', methods=['POST'])
 def predict():
