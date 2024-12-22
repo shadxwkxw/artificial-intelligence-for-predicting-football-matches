@@ -16,15 +16,17 @@
             <img src="/static/images/logo.png" class="logo">
             <p class="text-in-about">
                 Добро пожаловать на сайт нейросети, разработанной для предсказания результатов спортивных матчей! Наша система использует самые современные алгоритмы машинного обучения и анализ больших данных, чтобы обеспечить точные и надежные прогнозы для любителей спорта и беттинга. 
-
+            </p>
+            <p class="text-in-about">
                 Проект создан разработчиками Власюком Данилом и Беспалым Максимом, которые объединили свои знания и опыт, чтобы сделать спортивные предсказания доступными для каждого.
+            </p>
             </div>       
     </div>
 
     <div class="horizontal-line-black"></div>
 
     <div class="choise-commands">
-        <h1>Выбрать две команды для предсказания исхода:</h1>
+        <h1>Выберите две команды для предсказания исхода:</h1>
         <div class="select-commands">
             <select class="select-item">
                 <option>Список команд</option>
@@ -50,8 +52,6 @@
 
           <div id="result" class="result"></div>
     </div>
-
-    <div class="horizontal-line-black"></div>
 
     <div class="class-footer">
         <div class="danil">
@@ -144,6 +144,17 @@
         option.value = team.id;
         option.text = team.name;
         selectElement.add(option);
+        });
+
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const button = document.querySelector('.button-predict');
+
+            button.addEventListener('click', function() {
+                button.classList.add('active');
+            });
         });
 
     </script>

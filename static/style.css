@@ -48,14 +48,16 @@ body {
     width: 200px;
     height: 200px;
     margin-bottom: 20px;
+    border-radius: 20px;
 }
 
 .text-in-about {
-    text-align: center;
+    text-align: justify;
     width: 80%; 
     margin: 0 auto; 
-    word-break: break-word;
+    font-size: 25px;
     font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 30px;
 }
 
 .horizontal-line-black {
@@ -157,15 +159,40 @@ input:focus {
 .button-container {
     display: flex;
     justify-content: center;
+    padding-bottom: 10px;
 }
 
 .button-predict {
     border-radius: 10px;
+    position: relative;
     width: 150px;
+    height: 50px;
+    overflow: hidden;
     font-size: 18px;
     padding: 5px;
-    background-color: #f8f8f8; 
-    border: 2px solid #333; 
+    cursor: pointer;
+    border: none; 
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+    z-index: 1;
+    background-color: transparent;
+}
+
+.button-predict::before {
+    content: '';
+    width: 0;
+    height: 100%; 
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to right, #f647f9 0%, #19f0ed 100%);
+    transition: width 0.7s ease; 
+    display: block;
+    z-index: -1;
+    position: absolute;
+}
+
+.button-predict.active::before {
+    width: 150px;
 }
 
 .class-footer {
@@ -266,6 +293,10 @@ input:focus {
 }
 
 @media (max-width: 767px) {
+    .choise-commands {
+        height: auto;
+    }
+
     .choise-commands h1 {
         font-size: 30px;
     }
@@ -275,13 +306,14 @@ input:focus {
     .class-footer {
         flex-direction: column; 
         padding: 20px; 
-        align-items: center; 
+        align-items: center;
+        margin-top: 50px;
     }
 
     .danil {
         flex-direction: column; 
         align-items: center;
-        margin: 20px 0;
+        padding: 20px 0;
     }
 
     .maksim {
@@ -328,6 +360,12 @@ input:focus {
 
 @media (max-width: 768px) {
     .donat p {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .text-in-about {
         font-size: 18px;
     }
 }
