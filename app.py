@@ -7,15 +7,17 @@ global df
 app = Flask(__name__)
 model = keras.models.load_model('football_model.h5')
 
-def predict_game(HomeTeam, AwayTeam):
+def predict_game(home_team_id, away_team_id):
     try:
-        input_data = np.array([[HomeTeam, AwayTeam]]) #принимаем два введенных значения с поля input в список
+        input_data = np.array([[home_team_id, away_team_id]]) 
+        print(f"Input data for prediction: {input_data}")
         prediction = model.predict(input_data)
         print(f"Raw prediction probabilities: {prediction}") 
 
         predicted_result = np.argmax(prediction)
-        home_team = f"Команда {HomeTeam}"
-        away_team = f"Команда {AwayTeam}"
+        print(f"Predicted result index: {predicted_result}")
+        home_team = f"Команда {home_team_id}"
+        away_team = f"Команда {away_team_id}" 
         return get_result_string(predicted_result, home_team, away_team)
     except Exception as e:
         return f"Произошла ошибка: {str(e)}"
@@ -50,6 +52,14 @@ def predict():
         data = request.get_json()
         team1_id = int(data['team1Id'])
         team2_id = int(data['team2Id'])
+        
+        if not all(isinstance(id, int) for id in [team1_id, team2_id]):
+            return jsonify({'error': 'Invalid input: Введите целочисленные значения.'}), 400
+        if not all (1 <= id <= 27 for id in [team1_id, team2_id]):
+            return jsonify({'error': 'Invalid input: Значения должны быть в интервале от 1 до 27.'}), 400
+        if team1_id == team2_id:
+            return jsonify({'error': 'Invalid input: Значения не могут быть одинаковыми.'}), 400
+
         prediction = predict_game(team1_id, team2_id)
         
         print(f"Prediction: {prediction}")
@@ -70,4 +80,3 @@ def get_result_string(prediction, home_team, away_team):
     
 if __name__ == '__main__':
     app.run(debug=True)
-

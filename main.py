@@ -1,14 +1,12 @@
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
+from sklearn.impute import SimpleImputer
+from sklearn.decomposition import PCA
 from keras.models import Sequential
 from keras.layers import Dense
-from sklearn.datasets import make_classification
-
-import tensorflow as tf
+from keras.callbacks import EarlyStopping
 
 data = pd.read_csv('главный датасет.csv')
 df = pd.DataFrame(data)
@@ -42,11 +40,6 @@ print(X)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-#rf = RandomForestClassifier(n_estimators=100, random_state=42)
-#rf.fit(X_train, y_train)
-from sklearn.impute import SimpleImputer
-from sklearn.decomposition import PCA
-
 imputer = SimpleImputer(strategy='mean')
 
 X_train_imputed = imputer.fit_transform(X_train)
@@ -57,23 +50,27 @@ X_train_pca = pca.fit_transform(X_train_imputed)
 X_test_pca = pca.transform(X_test_imputed)
 
 scaler = StandardScaler()
-X_train_rf = scaler.fit_transform(X_train_pca)
-X_test_rf = scaler.transform(X_test_pca)
+X_train_scaled = scaler.fit_transform(X_train_pca)
+X_test_scaled = scaler.transform(X_test_pca)
 
 model = Sequential()
-model.add(Dense(64, input_dim=X_train_rf.shape[1], activation='relu'))
+model.add(Dense(64, input_dim=X_train_scaled.shape[1], activation='relu'))
 model.add(Dense(32, activation='relu'))
 model.add(Dense(3, activation='softmax'))
 
+# Компиляция модели
 model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-model.fit(X_train_rf, y_train, epochs=2000, batch_size=4096, verbose=1)
+# Обучение модели с ранней остановкой
+early_stopping = EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
 
-loss, accuracy = model.evaluate(X_test_rf, y_test)
+model.fit(X_train_scaled, y_train, epochs=1000, batch_size=4096, verbose=1, validation_split=0.2, callbacks=[early_stopping])
+
+loss, accuracy = model.evaluate(X_test_scaled, y_test)
 print(f'Accuracy: {accuracy:.4f}')
 
 # Предсказание результатов на тестовых данных
-predictions = model.predict(X_test_rf)
+predictions = model.predict(X_test_scaled)
 predicted_classes = np.argmax(predictions, axis=1)
 
 # Получаем индексы из DataFrame
