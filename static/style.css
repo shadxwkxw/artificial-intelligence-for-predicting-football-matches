@@ -756,6 +756,9 @@ footer {
   @supports (animation-timeline: scroll()) {
     header {
       animation: header ease-in-out both;
+      -webkit-animation: header ease-in-out both;
+      -moz-animation: header ease-in-out both;
+      -o-animation: header ease-in-out both;
       animation-timeline: scroll();
       animation-range: 0 90vh;
       z-index: 2;
@@ -794,6 +797,9 @@ footer {
   @supports (animation-timeline: scroll()) {
     header {
       animation: header ease-in-out both;
+      -webkit-animation: header ease-in-out both;
+      -moz-animation: header ease-in-out both;
+      -o-animation: header ease-in-out both;
       animation-timeline: scroll();
       animation-range: 0 90vh;
       z-index: 2;

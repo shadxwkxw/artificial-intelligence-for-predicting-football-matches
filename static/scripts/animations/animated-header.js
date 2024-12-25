@@ -8,22 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (menu.classList.contains('active')) {
             menu.style.height = menu.scrollHeight + 'px';
-        } else {
-            menu.style.height = '0px';
         }
     });
 
     menuItems.forEach(item => {
         item.addEventListener('click', () => {
             menu.classList.remove('active');
-            
         });
     });
     
    document.addEventListener('click', (event) => {
        if (!menu.contains(event.target) && !menuButton.contains(event.target)) {
             menu.classList.remove('active');
-            menu.style.height = '0px';
         }
    })
 });
