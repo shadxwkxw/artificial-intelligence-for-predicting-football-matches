@@ -212,7 +212,7 @@ header {
   flex-direction: column;
   align-items: center;
   opacity: 0;
-  transition: opacity 0.5s ease-in-out, transform 1s ease-in-out;
+  transition: opacity 0.5s ease-in-out, transform 1s ease-out;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
   padding: 10px;
@@ -222,19 +222,19 @@ header {
 
 
 .content-3 .border-box-diagram:nth-child(1) {
-  transform: translateY(-100%); 
+  transform: translateY(80%); 
 }
 
 .content-3 .border-box-diagram:nth-child(2) {
-  transform: translateY(-100%);
+  transform: translateY(80%);
 }
 
 .content-3 .border-box-diagram:nth-child(3) {
-  transform: translateY(-100%); 
+  transform: translateY(80%); 
 }
 
 .content-3 .border-box-diagram:nth-child(4) {
-  transform: translateY(-100%);
+  transform: translateY(80%);
 }
 
 .content-3.visible .border-box-diagram {
@@ -287,8 +287,8 @@ header {
   flex-direction: column;
 }
 .content-4 .input-2{
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 768px) {
@@ -508,7 +508,7 @@ flex-direction: column;
   border-radius: 10px;
   text-align: center;
   white-space: normal;
-  width: 500px;
+  width: 700px;
   opacity: 0;
   max-height: 0;
   overflow: hidden;
@@ -518,8 +518,8 @@ flex-direction: column;
 }
 
 .technology.active::after {
-opacity: 1;
-max-height: 500px;
+  opacity: 1;
+  max-height: 500px;
 }
 
 .border-box-technology {
@@ -575,6 +575,7 @@ input {
   box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
   z-index: 1;
   background-color: transparent;
+  color: black;
 }
 
 .button-predict::before {
@@ -733,6 +734,7 @@ input[type="number"]:focus {
 .donat p {
   padding: 10px;
   padding-left: 0;
+  color: white;
 }
 
 .p-arrow {
@@ -862,10 +864,13 @@ footer {
     border: 1px solid black;
     border-radius: 19px;
     transition: height 0.3s ease-in-out;
+    z-index: 10000;
   }
   
   header ul.active {
     display: flex;
+    background-color: white;
+    z-index: 10000;
   }
     
   header li {
@@ -966,6 +971,19 @@ footer {
   .technology::after {
     font-size: 12px;
     max-width: 300px;
+    position: fixed;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    width: 80%; 
+    max-width: 500px;
+    z-index: 1000; 
+  }
+
+  .technology.active::after {
+    opacity: 1;
+    max-height: 500px;
+    pointer-events: auto;
   }
 }
 

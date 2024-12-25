@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
               section.classList.remove('visible');
             }
         });
-    }, { threshold: 0.1 });  // Когда 10% секции видно
+    }, { threshold: 0.1 });
 
     observer.observe(section);
 });

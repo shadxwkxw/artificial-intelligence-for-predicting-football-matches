@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-              section.classList.add('visible'); // Добавляем класс, когда секция видна
+              section.classList.add('visible');
             } else {
-              section.classList.remove('visible'); // Удаляем класс, когда секция не видна
+              section.classList.remove('visible');
             }
         });
     }, { threshold: 0.1 });
