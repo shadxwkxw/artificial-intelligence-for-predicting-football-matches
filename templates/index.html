@@ -1,162 +1,272 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Нейросеть</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='/static/style.css'>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Нейросеть для предсказания футбольных матчей</title>
+  <link rel="stylesheet" href="/static/style.css">
 </head>
+<header>
+  <div class="menu-button">☰</div>
+  <ul>
+    <li><a href="#main">Главная</a></li>
+    <li><a href="#about-project">О проекте</a></li>
+    <li><a href="#about-us">О нас</a></li>
+    <li><a href="#how-it-work">Как это работает?</a></li>
+    <li><a href="#try">Попробовать</a></li>
+    <li><a href="#donation">Пожертвования</a></li>
+  </ul>
+</header>
 <body>
-    <!-- <img class="ellipse-1" src="/static/images/Ellipse 1.png">
-    <img class="ellipse-2" src="/static/images/Ellipse 2.png"> -->
 
-    <div class="about">
-        <div class="class-with-logo">
-            <img src="/static/images/logo.png" class="logo">
-            <p class="text-in-about">
-                Добро пожаловать на сайт нейросети, разработанной для предсказания результатов спортивных матчей! Наша система использует самые современные алгоритмы машинного обучения и анализ больших данных, чтобы обеспечить точные и надежные прогнозы для любителей спорта и беттинга. 
-            </p>
-            <p class="text-in-about">
-                Проект создан разработчиками Власюком Данилом и Беспалым Максимом, которые объединили свои знания и опыт, чтобы сделать спортивные предсказания доступными для каждого.
-            </p>
-            </div>       
+  <section class="hero" id="main">
+    <h1>Нейросеть по предсказанию футбольных матчей</h1>
+    <div class="try-button">
+      <a href="#try">Попробовать ИИ</a></li>
     </div>
+    <img src="/static/images/ball.webp" class="ball">
+  </section>
 
-    <div class="horizontal-line-black"></div>
+  <div class="horizontal-line-black"></div>
 
-    <div class="choise-commands">
-        <h1>Выберите две команды для предсказания исхода:</h1>
-        <div class="select-commands">
-            <select class="select-item">
-                <option>Список команд</option>
-            </select>
+  <section class="content content-1" id="about-project">
+    <h2>О проекте</h2>
+    <div class="image-text">
+      <img src="/static/images/logo.png" class="logo">
+      <div class="text-about">
+        <div class="border-box-animated" style="margin-bottom: 30px;">
+          <p>Добро пожаловать на сайт нейросети, разработанной для предсказания результатов спортивных матчей! Наша система использует самые современные алгоритмы машинного обучения и анализ больших данных, чтобы обеспечить точные и надежные прогнозы для любителей спорта и беттинга.</p>
         </div>
-        <form id="predictionForm" method="POST" action="/predict" class="form-prediction">
-            <div class="input-1">
-                <label for="team1Id" class="label-1">ID первой команды:</label>
-                <input id="team1Id" name="team1Id" required><br><br>
+        <div class="border-box-animated">
+          <p>Проект создан разработчиками Власюком Данилом и Беспалым Максимом, которые объединили свои знания и опыт, чтобы сделать спортивные предсказания доступными для каждого.</p>
+        </div>
+      </div>
+    </div>  
+  </section>
+
+  <div class="horizontal-line-black"></div>
+
+  <section class="content content-2" id="about-us">
+    <h2>Кто мы?</h2>
+    <div class="who">
+      <div class="developer border-box">
+        <div class="developer-and-qr">
+          <h1>Беспалый Максим</h1>
+          <p>Frontend, дизайн, backend, API, разработка и обучение модели, docker, деплой проекта, дебагинг</p>
+          <img src="/static/images/kxwarvt.jpg" class="qr">
+        </div>
+      </div>
+      <div class="developer border-box">
+        <div class="developer-and-qr">
+          <h1>Власюк Данил</h1>
+          <p>Backend, дизайн, разработка и обучение модели, деплой проекта, сбор и анализ данных</p>
+          <img src="/static/images/taobaogoat.jpg" class="qr">
+        </div>
+      </div>
+    </div>
+    <div class="technologys">
+      <div class="border-box box-technology">
+        <h1>Какие технологии мы использовали?</h1>
+        <h1 style="font-size: 14px;">При нажатии подробнее о технологиях</h1>
+        <div class="technologys">
+          <div class="border-box-technology">
+            <div class="technology" data-text="Язык был взят в качестве основного при разработке нейросети и backend'a.">
+              <img src="/static/images/python.png" class="logo-technology">
+              <p>Python</p>
+              <p class="p-arrow">⯆</p>
             </div>
-
-            <img src="/static/images/premier league.png" class="premier-league-logo">
-
-            <div class="input-2">
-                <label for="team2Id" class="label-2">ID второй команды:</label>
-                <input id="team2Id" name="team2Id" required><br><br>
-            </div>
-          </form>
-
-          <div class="button-container">
-                <button onclick="predictMatch()" class="button-predict">Предсказание</button>
           </div>
-
-          <div id="result" class="result"></div>
-    </div>
-
-    <div class="class-footer">
-        <div class="danil">
-            <img class="taobaogoat" src="/static/images/taobaogoat.jpg">
-            <div class="about-developer">
-                <p class="about-us">Разработчик:</p>
-                <p class="about-us">Власюк Данил</p>
+          <div class="border-box-technology">
+            <div class="technology" data-text="Язык разметки для создания 'скелета' сайта.">
+              <img src="/static/images/html5.png" class="logo-technology">
+              <p>HTML5</p>
+              <p class="p-arrow">⯆</p>
             </div>
-        </div>
-
-        <div class="maksim">
-            <div class="about-developer">
-                <p class="about-us">Разработчик:</p>
-                <p class="about-us">Беспалый Максим</p>
+          </div>
+          <div class="border-box-technology">
+            <div class="technology" data-text="Использован для стилизации контента на странице.">
+              <img src="/static/images/css.png" class="logo-technology">
+              <p>CSS</p>
+              <p class="p-arrow">⯆</p>
             </div>
-            <img class="kxwarvta" src="/static/images/kxwarvt.jpg">
+          </div>
+          <div class="border-box-technology">
+            <div class="technology" data-text="Этот язык помог реализовать скрипты анимаций, компоненты и API">
+              <img src="/static/images/js.png" class="logo-technology">
+              <p>JavaScript</p>
+              <p class="p-arrow">⯆</p>
+            </div>
+          </div>
+          <div class="border-box-technology">
+            <div class="technology" data-text="Технология docker позволила завернуть проект в 'контейнер', что послужило развёртыванию его на сервере.">
+              <img src="/static/images/docker.png" class="logo-technology">
+              <p>Docker</p>
+              <p class="p-arrow">⯆</p>
+            </div>
+          </div>
+          <div class="border-box-technology">
+            <div class="technology" data-text="Сервис системы контроля версий предоставил возможность выложить проект в сеть с последующим деплоем на сервер.">
+              <img src="/static/images/github.png" class="logo-technology">
+              <p>GitHub</p>
+              <p class="p-arrow">⯆</p>
+            </div>
+          </div>
         </div>
+        <div class="libraries">
+          <div class="technologys">
+            <div class="border-box-technology">
+              <div class="technology" data-text="Библиотека NumPy была использована для работы с многомерными массивами и математическими функциями.">
+                <img src="/static/images/numpy.svg" class="logo-technology">
+                <p>NumPy</p>
+                <p class="p-arrow">⯆</p>
+              </div>
+            </div>
+            <div class="border-box-technology">
+              <div class="technology" data-text="Библиотека Pandas использовалась для обработки и анализа данных, простой организации структурированных данных.">
+                <img src="/static/images/pandas.svg" class="logo-technology">
+                <p>Pandas</p>
+                <p class="p-arrow">⯆</p>
+              </div>
+            </div>
+            <div class="border-box-technology">
+              <div class="technology" data-text="Мы использовали TensorFlow как основу для создания и обучения нашей нейронной сети. Эта библиотека предоставляла инструменты для определения архитектуры модели, оптимизации параметров и оценки производительности.">
+                <img src="/static/images/tensorflow.svg" class="logo-technology">
+                <p>Tensorflow</p>
+                <p class="p-arrow">⯆</p>
+              </div>
+            </div>
+            <div class="border-box-technology">
+              <div class="technology" data-text="Keras выступал в качестве высокоуровневого API над TensorFlow, упрощая процесс построения и обучения нейронных сетей. Мы использовали Keras для определения слоев модели, активационных функций, функции потерь и оптимизатора.">
+                <img src="/static/images/keras.png" class="logo-technology">
+                <p>Keras</p>
+                <p class="p-arrow">⯆</p>
+              </div>
+            </div>
+            <div class="border-box-technology">
+              <div class="technology" data-text="Scikit-learn применялся для предобработки данных перед их передачей в нейронную сеть. Мы использовали StandardScaler для масштабирования числовых признаков и PCA для уменьшения размерности данных, что повысило эффективность обучения модели. Scikit-learn также обеспечил инструменты для импутации пропущенных значений и разбиения на обучающую и тестовую выборки.">
+                <img src="/static/images/scikit-learn.png" class="logo-technology">
+                <p>Scikit-learn</p>
+                <p class="p-arrow">⯆</p>
+              </div>
+            </div>
+            <div class="border-box-technology">
+              <div class="technology" data-text="Flask обеспечил необходимую инфраструктуру для взаимодействия пользователя с обученной моделью через веб-интерфейс, а также позволил пользователю отправлять запросы на предсказание. Мы использовали Flask для определения API-эндопоинта, обработки POST-запросов с данными от пользователя и возврата результатов предсказаний в формате JSON.">
+                <img src="/static/images/flask.png" class="logo-technology">
+                <p>Flask</p>
+                <p class="p-arrow">⯆</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="horizontal-line-white"></div>
-    
+  <div class="horizontal-line-black"></div>
+
+  <section class="content content-3" id="how-it-work">
+    <h2>Как это работает?</h2>
+    <div class="diagram-text">
+      <div class="border-box-diagram" style="align-items: center;">
+        <p>Railway</p>
+        <div class="border-box-diagram">
+          <p>Docker</p>
+          <div class="border-box-diagram">
+            <p>GitHub</p>
+            <div class="border-box-diagram">
+              <p>Frontend</p>
+              <div class="arrows">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+                </svg>
+              </div>
+              <p>API</p>
+              <div class="arrows">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+                </svg>
+              </div>
+              <p>Backend</p>
+              <div class="arrows">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+                </svg>
+              </div>
+              <p>AI model</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-box">
+        <p>-> Пользователь вводит id двух команд, которые можно посмотреть в выпадающем списке</p>
+        <p>-> Скрипт JavaScript обращается к Flask</p>
+        <p>-> Backend обращается к модели искусственного интеллекта</p>
+        <p>-> Происходит обратный процесс и пользователь видит результат предсказания</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="horizontal-line-black"></div>
+
+  <section class="content content-4" id="try">
+    <h2>Попробовать ИИ</h2>
+    <div class="select-container">
+      <div class="custom-select">
+          <div class="select-item">Список команд</div>
+          <div class="options-container">
+            <div class="option" data-value="" style="display: none;">Список команд</div>
+          </div>
+      </div>
+    </div>
+    <form id="predictionForm" method="POST" action="/predict" class="form-prediction">
+      <div class="input-1">
+          <label for="team1Id" class="label-1">
+            <p style="font-size: 16px;">ID первой команды:</p>
+          </label>
+          <input id="team1Id" name="team1Id" required><br><br>
+      </div>
+      <img src="/static/images/premier league.png" class="premier-league-logo">
+      <div class="input-2">
+          <label for="team2Id" class="label-2">
+            <p style="font-size: 16px;">ID второй команды:</p>
+          </label>
+          <input id="team2Id" name="team2Id" required><br><br>
+      </div>
+    </form>
+    <div class="button-container">
+      <button onclick="predictMatch()" class="button-predict">Предсказание</button>
+    </div>
+    <div id="result" class="result"></div>
+  </section>
+
+  <section class="content-5" id="donation">
     <div class="donat">
-        <h1>Донат: </h1>
-        <p>UQD4x00bCp56I0AH4ZE-Cm88Iea0m8oqvc3A2HPrAGLj9iWf (TON)</p>
-        <p>TQHfJ3Kc7rZ1txgU3rTj1E3U67pK8XD92T (USDT TRC-20)</p>
+      <h1>Донат: </h1>
+      <p>UQD4x00bCp56I0AH4ZE-Cm88Iea0m8oqvc3A2HPrAGLj9iWf (TON)</p>
+      <p>TQHfJ3Kc7rZ1txgU3rTj1E3U67pK8XD92T (USDT TRC-20)</p>
+      <p>2200 7010 1999 4547 (T-Bank)</p>
     </div>
-    <script>
-        async function predictMatch() {
-            const team1Id = document.getElementById('team1Id').value;
-            const team2Id = document.getElementById('team2Id').value;
-            const resultDiv = document.getElementById('result');
-        
-            try {
-                const response = await fetch('/predict', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ team1Id, team2Id })
-                });
-        
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    resultDiv.textContent = `Error: ${errorData.error}`;
-                    return;
-                }
-        
-                const data = await response.json();
-                resultDiv.textContent = `${data.prediction}`;
-            } catch (error) {
-                resultDiv.textContent = `Error: ${error}`;
-            }
-        }
-    </script>
-    <script>
-        const selectElement = document.querySelector('.select-commands select');
-        
-        const teamData = [
-            {id: 1, name: "1 – Arsenal"},
-            {id: 2, name: "2 – Aston Villa"},
-            {id: 3, name: "3 – Bournemouth"},
-            {id: 4, name: "4 – Brentford"},
-            {id: 5, name: "5 – Brighton"},
-            {id: 6, name: "6 – Burnley"},
-            {id: 7, name: "7 – Chelsea"},
-            {id: 8, name: "8 – Crystal Palace"},
-            {id: 9, name: "9 – Everton"},
-            {id: 10, name: "10 – Fulham"},
-            {id: 11, name: "11 – Ipswich"},
-            {id: 12, name: "12 – Leeds"},
-            {id: 13, name: "13 – Leicester"},
-            {id: 14, name: "14 – Liverpool"},
-            {id: 15, name: "15 – Luton"},
-            {id: 16, name: "16 – Man City"},
-            {id: 17, name: "17 – Man United"},
-            {id: 18, name: "18 – Newcastle"},
-            {id: 19, name: "19 – Norwich"},
-            {id: 20, name: "20 – Nott'm Forest"},
-            {id: 21, name: "21 – Sheffield United"},
-            {id: 22, name: "22 – Southampton"},
-            {id: 23, name: "23 – Tottenham"},
-            {id: 24, name: "24 – Watford"},
-            {id: 25, name: "25 – West Brom"},
-            {id: 26, name: "26 – West Ham"},
-            {id: 27, name: "27 – Wolves"}
-        ];
-    
-        teamData.forEach(team => {
-            const option = document.createElement('option');
-        option.value = team.id;
-        option.text = team.name;
-        selectElement.add(option);
-        });
+  </section>
 
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const button = document.querySelector('.button-predict');
-
-            button.addEventListener('click', function() {
-                button.classList.add('active');
-            });
-        });
-
-    </script>
+  <script src="/static/scripts/animations/animated-header.js"></script>
+  <script src="/static/scripts/animations/animated-ball.js"></script>
+  <script src="/static/scripts/animations/animated-diagram.js"></script>
+  <script src="/static/scripts/animations/animated-form.js"></script>
+  <script src="/static/scripts/animations/animated-boxs.js"></script>
+  <script src="/static/scripts/animations/animated-box.js"></script>
+  <script src="/static/scripts/components/drop-down-description.js"></script>
+  <script src="/static/scripts/components/options.js"></script>
+  <script src="/static/scripts/API/api.js"></script>
+  <script src="/static/scripts/animations/animated-button.js"></script>
+  <script src="/static/scripts/animations/smooth-transition.js"></script>
 </body>
 </html>
